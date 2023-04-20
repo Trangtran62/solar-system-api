@@ -7,11 +7,11 @@ class Planet:
         self.description = description
         self.order_from_sun = order_from_sun
 
-planets = [
-    planet1 = Planet(1, "Earth", "weird", 3), 
-    planet2 = Planet(2, "Mars", "hot", 4), 
-    planet3 = Planet(3, "Venus", "orange", 5)
-    ]
+planet1 = Planet(1, "Earth", "weird", 3)
+planet2 = Planet(2, "Mars", "hot", 4)
+planet3 = Planet(3, "Venus", "orange", 5)
+
+planets = [planet1, planet2, planet3]
 
 planets_bp = Blueprint("planets", __name__, url_prefix="/planets")
 
