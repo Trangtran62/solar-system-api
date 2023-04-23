@@ -1,5 +1,4 @@
 from flask import Blueprint, jsonify
-
 class Planet:
     def __init__(self, id, name, description, order_from_sun):
         self.id = id
@@ -24,7 +23,22 @@ def get_planets():
         "name": planet.name,
         "description": planet.description, 
         "order_from_sun": planet.order_from_sun }
-
         response.append(planet_dict)
-
     return jsonify(response), 200
+
+@planets_bp.route("/<id>", methods=["GET"])
+def get_one_planets(id):
+    try:
+        planet_id = int(id)
+    except ValueError:
+        return jsonify({"msg": f"Invalid id: {id}"}), 400
+    
+    for planet in planets:
+        if planet.id == planet_id:
+            return jsonify({
+                "id": planet.id,
+                "name": planet.name,
+                "description": planet.description,
+                "order from the sun": planet.order_from_sun
+            }), 200
+    return {"msg": f"Error 404: planet with id {planet_id} not found."}, 404
