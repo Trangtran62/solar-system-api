@@ -20,10 +20,16 @@ def add_planet():
 @planet_bp.route("", methods=["GET"]) 
 def get_planets():
     response = []
-    planets = Planet.query.all()
+    name_query = request.args.get("name")
+    
+    if name_query:
+        planets = Planet.query.filter_by(name=name_query.capitalize())
+    else:
+        planets = Planet.query.all()
+        
     for planet in planets:
         response.append(planet.to_dict())
-    return jsonify(response) 
+    return jsonify(response), 200 
 
 def validate_id(planet_id):
     try:
