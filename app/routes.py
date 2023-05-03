@@ -15,7 +15,7 @@ def add_planet():
     db.session.add(new_planet)
     db.session.commit()
     
-    return make_response({"message": f"Planet {new_planet} successfuly created"}, 201)
+    return make_response({"message": f"Planet {new_planet.id} successfuly created"}, 201)
 
 @planet_bp.route("", methods=["GET"]) 
 def get_planets():
@@ -42,7 +42,7 @@ def validate_id(planet_id):
 @planet_bp.route("/<planet_id>", methods=["GET"]) 
 def get_one_planet(planet_id):
     planet = validate_id(planet_id)
-    return jsonify(planet.to_dict())
+    return jsonify(planet.to_dict()), 200
 
 @planet_bp.route("/<planet_id>", methods=["PUT"]) 
 def update_one_planet(planet_id):
