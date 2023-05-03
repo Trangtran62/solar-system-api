@@ -10,20 +10,21 @@ def test_get_planets_with_records(client, add_two_planets):
     response_body = response.get_json()
 
     assert response.status_code == 200
-    assert response_body == [
-        {
-        "id": 1,
-        "name": "Saturn",
-        "description": "Rings",
-        "order_from_sun": "6th from sun"
-        },
-        {
-        "id": 2,
-        "name": "Mars",
-        "description": "Hot red",
-        "order_from_sun": "4th from sun"
-        }
-    ]
+    assert response_body == add_two_planets
+    # assert response_body == [
+    #     {
+    #     "id": 1,
+    #     "name": "Saturn",
+    #     "description": "Rings",
+    #     "order_from_sun": "6th from sun"
+    #     },
+    #     {
+    #     "id": 2,
+    #     "name": "Mars",
+    #     "description": "Hot red",
+    #     "order_from_sun": "4th from sun"
+    #     }
+    # ]
 
 def test_get_one_planet(client, add_two_planets):
     response = client.get("/planet/1")

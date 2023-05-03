@@ -34,3 +34,4 @@ def add_two_planets():
     )
     db.session.add_all([planet_one, planet_two])
     db.session.commit()
+    return [planet_one.to_dict(), planet_two.to_dict()]
